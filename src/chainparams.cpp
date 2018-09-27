@@ -54,7 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-        (       0,	uint256("0000004cf5ffbf2e31a9aa07c86298efb01a30b8911b80af7473d1114715084b") ); 
+        (       0,	uint256("0000235abe5c5e69c7850d5627463f9574ccc1b83acb1d13ba1c3919e7374b71") ); 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1034845571, // * UNIX timestamp of last checkpoint block
@@ -107,7 +107,7 @@ public:
         pchMessageStart[1] = 0x2d;              
         pchMessageStart[2] = 0x1c;              
         pchMessageStart[3] = 0xe5;
-        vAlertPubKey = ParseHex("04cc24ab003c828cdd9cf4db2ebbde8esdfsdfsdsdfsdfsfsdfsdf1cecb3bbfa8b3127fcb9dd9b84d44112080827ed7c49a648af9fe788ff42e316aee665879c553f099e55299d6b54edd7e0");
+        vAlertPubKey = ParseHex("09cc24ab003c828cdd9cf4eb2ebbde8esdfsdfsdsdfsdfsfsdfsdf1cecb3bbfa8b3127fcb9dd9b84d44112080827ed7c49a648af9fe788ff42e316aee665879c553f099e55299d6b54edd7e0");
         nDefaultPort = 20202;                   
         bnProofOfWorkLimit  = (~uint256(0) >> 16);
         bnProofOfStakeLimit = (~uint256(0) >> 20); 
@@ -148,8 +148,8 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "On 2018/8/13 We make the world better by GASH.";
-        genesis.nTime = 1534163480;                                         // GMT: Thursday, February 2, 2017 2:30:00 PM
+        const char* pszTimestamp = "GASH means GAther rubbiSH. We want a much more green world 09/27/18";
+        genesis.nTime = 1538057827;                                         // GMT: Thursday, February 2, 2017 2:30:00 PM
 
         CMutableTransaction txNew;
         txNew.nTime = genesis.nTime;
@@ -163,19 +163,22 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nBits = 0x1f00ffff;
-        genesis.nNonce = 668663;
+        genesis.nNonce = 538443;
 
         hashGenesisBlock = genesis.GetHash();
-	//printf("nVersion = %d\n,genensis = %s\n;hashGenesisBlock = %s\n",genesis.nVersion,genesis.ToString().c_str(),hashGenesisBlock.ToString().c_str());
-	//printf("genesis.hashMerkleRoot = %s\n",genesis.hashMerkleRoot.GetHex().c_str());
-        assert(hashGenesisBlock == uint256("0x0000031c79da6e1f6696f8cace965a197cb066da695081cae656ee90d7c44835"));
-        assert(genesis.hashMerkleRoot == uint256("0x39dcb47ad0e3112e85eb60dd69cbdf6a5b3bbf3b63330c258858707ecf216c73"));
-
+/*
+for(int ii=100000;ii<1000000;ii++) {
+	genesis.nNonce = ii;
+	printf("i=%7d, hash = %s  , root = %s\n",ii,genesis.GetHash().GetHex().c_str(),genesis.hashMerkleRoot.GetHex().c_str());
+}
+*/
+        assert(hashGenesisBlock == uint256("0x0000235abe5c5e69c7850d5627463f9574ccc1b83acb1d13ba1c3919e7374b71"));
+        assert(genesis.hashMerkleRoot == uint256("0xea68c26883f7bc8bc1189db75bbbd415abe1ca59e6abdd4e4fc3687b3e1f6db3"));
 
         // Gash addresses start with 'i'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 0x39);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 153);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 125);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
