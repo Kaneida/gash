@@ -3060,7 +3060,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             return state.DoS(100, error("ConnectBlock() : PoS period not active"),
                 REJECT_INVALID, "PoS-early");
 
-        if (pindex->nHeight <= 212)
+        if (pindex->nHeight <= 105)
             return state.DoS(100, error("ConnectBlock() : PoS period not active!"),
                 REJECT_INVALID, "PoS-early");
     }
