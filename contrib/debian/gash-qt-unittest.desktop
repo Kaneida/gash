@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gash-Qt Unit test
+Comment=Gash P2P gaming related cryptocurrency - UNITTEST
+Comment[fr]=Gash unittest, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Gash unittest, eşten eşe kriptografik sanal para birimi
+Exec=gash-qt --unittest %u
+Terminal=false
+Type=Application
+Icon=gash128-unittest
+MimeType=x-scheme-handler/gash;
+Categories=Office;Finance;

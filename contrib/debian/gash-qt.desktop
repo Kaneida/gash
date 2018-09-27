@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gash-Qt
+Comment=Gash P2P gaming related cryptocurrency
+Comment[fr]=Gash, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Gash, eşten eşe kriptografik sanal para birimi
+Exec=gash-qt %u
+Terminal=false
+Type=Application
+Icon=gash128
+MimeType=x-scheme-handler/gash;
+Categories=Office;Finance;

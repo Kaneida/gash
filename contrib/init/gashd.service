@@ -1,0 +1,26 @@
+[Unit]
+Description=Gash's distributed currency daemon
+After=network.target
+
+[Service]
+User=gash
+Group=gash
+
+Type=forking
+PIDFile=/var/lib/gashd/gashd.pid
+
+ExecStart=/usr/bin/gashd -daemon -pid=/var/lib/gashd/gashd.pid \
+          -conf=/etc/gash/Gashcoin.conf -datadir=/var/lib/gashd
+
+ExecStop=-/usr/bin/gash-cli -conf=/etc/gash/Gashcoin.conf \
+         -datadir=/var/lib/gashd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

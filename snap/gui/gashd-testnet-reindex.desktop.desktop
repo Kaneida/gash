@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Type=Application
+Version=3.0.0
+Encoding=UTF-8
+Name=Gash Daemon Testnet (reindex)
+Icon=${SNAP}/gashd128testnet.png
+MimeType=x-scheme-handler/gash;
+Exec=gashd %u --testnet --reindex
+Terminal=true
+Categories=Office;Finance;Cryptocurrency;
+Comment=🗺️Gash Digital Currency Testnet Daemon (reindex) 👯👯 👛 (by 🐼CEVAP🐼) CE source code (Community Edition)
+Keywords=internet;gash;testnet;daemon;server;crypto;currency;snap;snapcraft;reindex;
+Name[de_DE]=gashd-testnet-reindex.desktop.desktop

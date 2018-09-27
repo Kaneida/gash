@@ -1,0 +1,26 @@
+# /etc/conf.d/gashd: config file for /etc/init.d/gashd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/gash/Gashcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/gashd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/gashd.pid"
+
+# Where to write gashd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/gashd"
+
+# User and group to own gashd process
+#BITCOIND_USER="gash"
+#BITCOIND_GROUP="gash"
+
+# Path to gashd executable
+#BITCOIND_BIN="/usr/bin/gashd"
+
+# Nice value to run gashd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

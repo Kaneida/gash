@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gash-Qt Regtest
+Comment=Gash P2P gaming related cryptocurrency - REGTEST
+Comment[fr]=Gash regtest, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Gash regtest, eşten eşe kriptografik sanal para birimi
+Exec=gash-qt --regtest %u
+Terminal=false
+Type=Application
+Icon=gash128-regtest
+MimeType=x-scheme-handler/gash;
+Categories=Office;Finance;

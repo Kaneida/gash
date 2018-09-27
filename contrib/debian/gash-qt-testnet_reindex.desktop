@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gash-Qt Testnet (Reindex)
+Comment=Gash P2P gaming related cryptocurrency - TESTNETWORK
+Comment[fr]=Gash testnet, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Gash testnet, eşten eşe kriptografik sanal para birimi
+Exec=gash-qt --testnet --reindex %u
+Terminal=false
+Type=Application
+Icon=gash128-testnet
+MimeType=x-scheme-handler/gash;
+Categories=Office;Finance;
