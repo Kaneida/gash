@@ -230,7 +230,7 @@
                     <layout class="QVBoxLayout" name="verticalLayout_5">
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
-                       <item>
+                       <!--<item>
                         <widget class="QLabel" name="label_5z">
                          <property name="minimumSize">
                           <size>
@@ -252,7 +252,7 @@
                           <string>Combined Balance</string>
                          </property>
                         </widget>
-                       </item>
+                       </item>-->
                        <item>
                         <widget class="QLabel" name="labelWalletStatus">
                          <property name="cursor">
@@ -272,7 +272,7 @@
                          </property>
                         </widget>
                        </item>
-                       <item>
+                       <!--<item>
                         <spacer name="horizontalSpacer_1">
                          <property name="orientation">
                           <enum>Qt::Horizontal</enum>
@@ -284,10 +284,10 @@
                           </size>
                          </property>
                         </spacer>
-                       </item>
+                       </item>-->
                       </layout>
                      </item>
-                     <item>
+                     <!--<item>
                       <widget class="Line" name="line_CombinedBalance">
                        <property name="minimumSize">
                         <size>
@@ -402,7 +402,7 @@
                         </size>
                        </property>
                       </spacer>
-                     </item>
+                     </item>-->
                     </layout>
                    </widget>
                   </item>

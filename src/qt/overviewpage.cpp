@@ -245,8 +245,8 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     //ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
 
     // Combined labels
-    ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
+    //ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
+    //ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
 
     // Percentage labels
     ui->labelGASHPercent->setText(sPercentage);
@@ -268,8 +268,8 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     QSettings settings;
     bool settingShowAllBalances = !settings.value("fHideZeroBalances").toBool();
     bool showSumAvailable = settingShowAllBalances || sumTotalBalance != availableTotalBalance;
-    ui->labelBalanceTextz->setVisible(showSumAvailable);
-    ui->labelBalancez->setVisible(showSumAvailable);
+    //ui->labelBalanceTextz->setVisible(showSumAvailable);
+    //ui->labelBalancez->setVisible(showSumAvailable);
     bool showGASHAvailable = settingShowAllBalances || gashAvailableBalance != nTotalBalance;
     bool showWatchOnlyGASHAvailable = watchOnlyBalance != nTotalWatchBalance;
     bool showGASHPending = settingShowAllBalances || unconfirmedBalance != 0;
