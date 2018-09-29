@@ -18,7 +18,7 @@ const std::string CLIENT_NAME("Gashcoin Core");
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX "-BRIDGE"
+#define CLIENT_VERSION_SUFFIX "-HAVEFUN"
 
 
 /**
