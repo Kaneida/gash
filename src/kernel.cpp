@@ -411,7 +411,6 @@ bool CheckStakeKernelHashPos3(unsigned int nBits, const CBlock blockFrom, const 
     int64_t nValueIn = txPrev.vout[prevout.n].nValue;
     unsigned int nTimeBlockFrom = blockFrom.GetBlockTime();
 
-LogPrintf("CheckStakeKernelHashPos3()\n");
 
     if (nTimeTx < nTimeBlockFrom) // Transaction timestamp violation
         return error("CheckStakeKernelHashPos3() : nTime violation");

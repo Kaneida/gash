@@ -307,7 +307,6 @@ static UniValue BIP22ValidationResult(const CValidationState& state)
 
 UniValue getblocktemplate(const UniValue& params, bool fHelp)
 {
-LogPrintf("getblocktemplate\n");
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getblocktemplate ( \"jsonrequestobject\" )\n"
@@ -375,11 +374,9 @@ LogPrintf("getblocktemplate\n");
             HelpExampleCli("getblocktemplate", "") + HelpExampleRpc("getblocktemplate", ""));
 
     LOCK(cs_main);
-LogPrintf("getblocktemplate 2\n");
     std::string strMode = "template";
     UniValue lpval = NullUniValue;
     if (params.size() > 0) {
-LogPrintf("getblocktemplate 2.1\n");
         const UniValue& oparam = params[0].get_obj();
         const UniValue& modeval = find_value(oparam, "mode");
         if (modeval.isStr())
@@ -389,9 +386,7 @@ LogPrintf("getblocktemplate 2.1\n");
         } else
             throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
         lpval = find_value(oparam, "longpollid");
-LogPrintf("getblocktemplate 2.2\n");
         if (strMode == "proposal") {
-LogPrintf("getblocktemplate 2.2.1\n");
             const UniValue& dataval = find_value(oparam, "data");
             if (!dataval.isStr())
                 throw JSONRPCError(RPC_TYPE_ERROR, "Missing data String key for proposal");
@@ -402,7 +397,6 @@ LogPrintf("getblocktemplate 2.2.1\n");
 
             uint256 hash = block.GetHash();
             BlockMap::iterator mi = mapBlockIndex.find(hash);
-LogPrintf("getblocktemplate 2.2.2\n");
             if (mi != mapBlockIndex.end()) {
                 CBlockIndex* pindex = mi->second;
                 if (pindex->IsValid(BLOCK_VALID_SCRIPTS))
@@ -424,18 +418,14 @@ LogPrintf("getblocktemplate 2.2.2\n");
 
     if (strMode != "template")
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
-LogPrintf("getblocktemplate 3\n");
 
     if (vNodes.empty())
         throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "GASH is not connected!");
-LogPrintf("getblocktemplate 4\n");
 //    if (IsInitialBlockDownload())
 //        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "GASH is downloading blocks...");
-LogPrintf("getblocktemplate 5\n");
     static unsigned int nTransactionsUpdatedLast;
 
     if (!lpval.isNull()) {
-LogPrintf("getblocktemplate 5.1\n");
         // Wait to respond until either the best block changes, OR a minute has passed and there are more transactions
         uint256 hashWatchedChain;
         boost::system_time checktxtime;
@@ -443,13 +433,11 @@ LogPrintf("getblocktemplate 5.1\n");
 
         if (lpval.isStr()) {
             // Format: <hashBestChain><nTransactionsUpdatedLast>
-LogPrintf("getblocktemplate 5.1.1\n");
             std::string lpstr = lpval.get_str();
 
             hashWatchedChain.SetHex(lpstr.substr(0, 64));
             nTransactionsUpdatedLastLP = atoi64(lpstr.substr(64));
         } else {
-LogPrintf("getblocktemplate 5.1.2\n");
             // NOTE: Spec does not specify behaviour for non-string longpollid, but this makes testing easier
             hashWatchedChain = chainActive.Tip()->GetBlockHash();
             nTransactionsUpdatedLastLP = nTransactionsUpdatedLast;
@@ -457,11 +445,9 @@ LogPrintf("getblocktemplate 5.1.2\n");
 
 // Release the wallet and main lock while waiting
 #ifdef ENABLE_WALLET
-LogPrintf("getblocktemplate 5.2\n");
         if (pwalletMain)
             LEAVE_CRITICAL_SECTION(pwalletMain->cs_wallet);
 #endif
-LogPrintf("getblocktemplate 5.3\n");
         LEAVE_CRITICAL_SECTION(cs_main);
         {
             checktxtime = boost::get_system_time() + boost::posix_time::minutes(1);
@@ -481,20 +467,17 @@ LogPrintf("getblocktemplate 5.3\n");
         if (pwalletMain)
             ENTER_CRITICAL_SECTION(pwalletMain->cs_wallet);
 #endif
-LogPrintf("getblocktemplate 5.4\n");
 
         if (!IsRPCRunning())
             throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Shutting down");
         // TODO: Maybe recheck connections/IBD and (if something wrong) send an expires-immediately template to stop miners?
     }
-LogPrintf("getblocktemplate 6\n");
     // Update block
     static CBlockIndex* pindexPrev;
     static int64_t nStart;
     static CBlockTemplate* pblocktemplate;
     if (pindexPrev != chainActive.Tip() ||
         (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5)) {
-LogPrintf("getblocktemplate 6.1\n");
 
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
         pindexPrev = NULL;
@@ -503,23 +486,18 @@ LogPrintf("getblocktemplate 6.1\n");
         nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
         CBlockIndex* pindexPrevNew = chainActive.Tip();
         nStart = GetTime();
-LogPrintf("getblocktemplate 6.2\n");
         // Create new block
         if (pblocktemplate) {
             delete pblocktemplate;
             pblocktemplate = NULL;
         }
-LogPrintf("getblocktemplate 6.3\n");
         CScript scriptDummy = CScript() << OP_TRUE;
         pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain, false);
-LogPrintf("getblocktemplate 6.4\n");
         if (!pblocktemplate)
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
-LogPrintf("getblocktemplate 6.5\n");
         // Need to update only after we know CreateNewBlock succeeded
         pindexPrev = pindexPrevNew;
     }
-LogPrintf("getblocktemplate 7\n");
     CBlock* pblock = &pblocktemplate->block; // pointer for convenience
 
     // Update nTime
